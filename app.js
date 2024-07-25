@@ -6,6 +6,7 @@ const cookieParser=require("cookie-parser")
 app.use(cookieParser())
 require("dotenv").config();
 const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',');
+console.log(allowedOrigins)
 app.use(cors({
     origin: function (origin, callback) {
         // Check if the origin is in the list of allowed origins
