@@ -13,6 +13,7 @@ module.exports.fetchCampusNames = async (req, res) => {
         res.send({ success: false, data: "There was error trying to fetch campus details" })
     }
 }
+
 module.exports.fetchCampus = async (req, res) => {
     try {
         console.log(req.body.name);
