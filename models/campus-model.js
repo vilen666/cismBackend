@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const campusSchema = mongoose.Schema({
     name:String,
-  pictures: [
+  pictures: [ 
     {
       contentType: String,
       data: Buffer
@@ -10,6 +10,6 @@ const campusSchema = mongoose.Schema({
   ]
 });
 
-const campusModel = mongoose.model('campus', campusSchema);
+const campusModel = mongoose.model('cismcampus', campusSchema);
 
 module.exports = campusModel;

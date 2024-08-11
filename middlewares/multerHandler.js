@@ -5,6 +5,7 @@ module.exports = (err, req, res, next) => {
         return res.send({success:false,data:'File size is too large. Maximum size is 1MB.'});
       }
     } else if (err) {
+      console.log("hello")
       return res.send({success:false,data:err.message});
     }
     else

@@ -7,4 +7,4 @@ const courseSchema= mongoose.Schema({
         contentType: String
       }
 })
-module.exports = mongoose.model("course",courseSchema)
+module.exports = mongoose.model("cismcourse",courseSchema)
