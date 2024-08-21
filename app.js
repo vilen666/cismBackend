@@ -26,4 +26,4 @@ app.listen(process.env.PORT,(err)=>{
     else{
         console.log(`You are live at http://localhost:${process.env.PORT}/ you can access from : ${process.env.ORIGIN}`)
     }
-})
+}) 
