@@ -4,7 +4,6 @@ require("dotenv").config()
 let cookie = require("cookie-parser")
 
 module.exports.register = async (req, res) => {
-    console.log("hello");
     if (process.env.NODE_ENV === "development") {
         let admin = await adminModel.find();
         if (admin.length > 0) {
@@ -58,13 +57,7 @@ module.exports.login = async (req, res) => {
             }
             else {
                 let token = generateToken(admin)
-                res.cookie("token", token,{
-                    httpOnly:true,
-                    sameSite:"None",
-                    secure:true
-                });
-                return res.send({ success: true, data: "You are Successfully logged in" })
-
+                return res.send({ success: true,token, data: "You are Successfully logged in" })
             }
         })
     }
@@ -80,7 +73,6 @@ module.exports.edit = async (req, res) => {
     let admin = await adminModel.findOne({ username: oldUser })
     if (admin.password !== pass && pass!=="") {
         try {
-            console.log("okok")
             bcrypt.genSalt(10, function (err, salt) {
                 if (err) {
                     res.send({ success: false, data: `Contact Developer` })
@@ -103,7 +95,6 @@ module.exports.edit = async (req, res) => {
     else{
         try{
             admin=await adminModel.findByIdAndUpdate(admin.id, { username:user })
-            console.log(admin)
             return res.json({ success: true, data: `Admin updated` })
         }
        catch(err)

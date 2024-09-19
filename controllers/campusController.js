@@ -70,7 +70,7 @@ module.exports.uploadCampus = async (req, res) => {
 
 module.exports.updateCampus= async (req,res)=>{
     try {
-        let campus=await campusModel.findOne({name:req.body.name})
+        let campus=await campusModel.findById({_id:req.body._id})
         let oldpictures=JSON.parse(req.body.pictures)
         pictures=[...oldpictures.map(item=>{
             return({
@@ -86,7 +86,7 @@ module.exports.updateCampus= async (req,res)=>{
                     contentType: file.mimetype,
                     data: webpBuffer
                 })
-        })))]
+        })))]        
         campus=await campusModel.findByIdAndUpdate({_id:campus._id},{pictures})
         res.send({ success: true, data: "Succesfully Updated" })
     } catch (error) {
@@ -95,9 +95,7 @@ module.exports.updateCampus= async (req,res)=>{
 }
 
 module.exports.deleteCampus=async (req,res)=>{
-    try{let campus = await campusModel.findByIdAndDelete({_id:req.params.id})
-    console.log(req.params);
-    
+    try{let campus = await campusModel.findByIdAndDelete({_id:req.params.id})    
     if(campus){
         res.send({success:true,data:`${campus.name} deleted Successfully`})
     }

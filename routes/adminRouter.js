@@ -15,14 +15,6 @@ if (process.env.NODE_ENV === "development") router.post("/register", register)
 router.get("/", fetchData)
 router.post("/edit", isLoggedIn, edit)
 router.post("/login", login)
-router.get("/logout", (req, res) => {
-  res.clearCookie("token",{
-    httpOnly:true,
-    secure:true,
-    sameSite:"None"
-  })
-  res.send({ success: true })
-})
 
 router.get("/portal", isLoggedIn, (req, res) => {
   res.send({ success: true })
